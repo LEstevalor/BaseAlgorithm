@@ -34,16 +34,4 @@ public class Merget {
         while (left + t <= right) arr[left + t] = temp[t++];
     }
 
-    public static void megadw(int[] arr, int left, int mid, int right, int[] temp) {
-        int i = left;
-        int j = mid + 1;
-        int t = 0;
-        while (i <= mid && j <= right) {
-            temp[t++] = (arr[i] < arr[j]) ? arr[i++] : arr[j++];
-        }
-        while (i <= mid) temp[t++] = arr[i++];
-        while (j <= right) temp[t++] = arr[j++];
-        t = 0;
-        while (left + t <= right) arr[left + t] = temp[t++];
-    }
 }

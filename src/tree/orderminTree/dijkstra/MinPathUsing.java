@@ -9,22 +9,63 @@ public class MinPathUsing {
                 {m,m,8,m,0,5,4},{m,m,m,4,5,0,6},
                 {2,3,m,m,4,6,0}
         };*/
+//        int[][] near = new int[][] {
+//                {0,10,6,10,m,m,m},
+//                {m,0,m,m,m,38,m},
+//                {m,11,0,5,14,m,m},
+//                {m,m,m,0,9,m,m},
+//                {m,m,m,m,0,22,m},
+//                {m,m,m,m,m,0,5},
+//                {m,m,m,m,m,m,0}
+//        };
         int[][] near = new int[][] {
-                {0,10,6,10,m,m,m},
-                {m,0,m,m,m,38,m},
-                {m,11,0,5,14,m,m},
-                {m,m,m,0,9,m,m},
-                {m,m,m,m,0,22,m},
-                {m,m,m,m,m,0,5},
-                {m,m,m,m,m,m,0}
+                {0, 10, 5},
+                {m, 0, 11},
+                {m, 2, 12}
         };
         int n = 0;
         //求 A 到 G的最短路径
         new DijkstraDemo1().dijkstra(near, n);
-        System.out.println(near[0][6]);
+        System.out.println(near[0][1]);
+    }
+
+    public static boolean bellmanFord(int s, int[][] a) {
+        int n = a.length;
+        int[] d = new int[n];
+        for (int i = 0; i < n; i++) {
+            d[i] = a[s][i];  // s为
+        }
+        for (int i = 0; i < n - 1; i++) {  // n-1次
+            for (int j = 0; j < n; j++) {  // 中间点
+                for (int k = 0; k < n; k++) {  // 终点
+                    if (a[j][k] != Integer.MAX_VALUE) {
+                        d[k] = Math.min(d[k], d[j] + a[j][k]);  // min d[k] d[j] + a[j][k]
+                    }
+                }
+            }
+        }
+        for (int j = 0; j < n; j++) {
+            for (int k = 0; k < n; k++) {
+                if (a[j][k] != Integer.MAX_VALUE) {
+                    if (d[k] > d[j] + a[j][k]) { // 还有能被更新的情况，说明存在负权图
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 }
 
+/**
+ * dijkstra
+ * 记忆数组标记访问点，被访问过标记为1，初始标记起点
+ * 外层遍历n-1次，仅这个作用
+ * 一内遍历，记录离起点最近的路径，且尾点未被访问过，记录后标记该尾点访问过
+ * 二内遍历，以尾点为中间点，更新起点到另一些未访问点的最短路径，不标记该些点
+ *
+ * 本质上，起点是一直不变的，访问记录下的除起点均为中间点，然后按每个点作为中间点进行不断更新，以更新出一行路径上点到点的最短距离
+ */
 class DijkstraDemo1 {
     public void dijkstra(int[][] near, int start) {
         //顶点数
@@ -63,3 +104,33 @@ class DijkstraDemo1 {
         }
     }
 }
+
+/*
+	public static void dijkstra(int[][] near, int start) {
+		int size = near.length;
+
+		boolean[] visited = new boolean[size];
+		visited[start] = true;  // 标记
+		int t = start;
+		int minDis = Integer.MAX_VALUE/2;
+
+		for (int h = 1; h < size; h++) {
+			for (int i = 1; i < size; i++) {
+				if (!visited[i] && near[start][i] < minDis) {
+					minDis = Math.min(minDis, near[start][i]);
+					t = i;
+				}
+			}
+			visited[t] = true;
+
+			for (int k = 1; k < size; k++) {
+				if (!visited[k]) {
+					near[start][k] = Math.min(near[start][k], minDis + near[t][k]);
+				}
+			}
+		}
+
+	}
+*/
+
+
