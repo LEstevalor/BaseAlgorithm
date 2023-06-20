@@ -1,8 +1,13 @@
 package sort55;
 
+import java.util.Arrays;
+
 public class BubbleSort {
     public static void main(String[] args) {
         int arr[] = {3, 9, -1, 10, -2};
+
+//        bubbleSort(arr);
+//        System.out.println(Arrays.toString(arr));
 
         boolean flag = false;   //优化 —— 标识变量，表示是否进行过交换
 
@@ -41,5 +46,21 @@ public class BubbleSort {
             System.out.printf(num + " ");
         }
 
+    }
+    public static void bubbleSort(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            boolean flag = false;  // 用于标记是否交换过
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    flag = true;
+                }
+            }
+            if (!flag) {
+                break;
+            }
+        }
     }
 }

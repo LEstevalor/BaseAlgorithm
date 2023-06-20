@@ -17,7 +17,7 @@ public class MinTreeUsing {
         //求最短路径
         int res = new MMinTree().prim(new MGraph(nodeCount, near), 1);
 
-        System.out.println(res);
+        System.out.println(res);   // 25
     }
 }
 /*
@@ -90,6 +90,13 @@ class MGraph {
     }
 }
 
+/**
+ * Prim算法
+ * 记忆数组，记录起点，表示被访问过
+ * 外层遍历n-1，仅遍历作用
+ * 内遍历，两层遍历找起点为被访问过的点，终点为未被访问过的点，中最短的路，记录终点即可（如果题目要求的只是结果）
+ * 将最短路做叠加，记录终点为被访问点
+ */
 class MM {
     public int prim(int[][] near, int v) {
         int res = 0;
@@ -115,3 +122,32 @@ class MM {
         return res;
     }
 }
+
+/*
+
+	public static int prim(int[][] near, int start) {
+		int size = near.length;
+		boolean[] visited = new boolean[size];
+		visited[start] = true;
+		int res = 0;
+
+		for (int i = 1; i < size; i++) {
+			int minPath = Integer.MAX_VALUE / 2;
+			int end = -1;
+
+			for (int j = 0; j < size; j++) {
+				for (int k = 0; k < size; k++) {
+					if (visited[j] && !visited[k] && near[j][k] < minPath) {
+						minPath = near[j][k];
+						end = k;
+					}
+				}
+			}
+
+			res += minPath;
+			visited[end] = true;
+		}
+		return res;
+	}
+
+ */

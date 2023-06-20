@@ -26,18 +26,4 @@ public class Select {
             }
         }
     }
-
-    public static void mama(int[] arr) {
-        for (int i = 0; i < arr.length - 1; i++) {
-            int minIndex = i;
-            for (int j = i + 1; j < arr.length; j++) {
-                minIndex = arr[minIndex] > arr[j] ? j : minIndex;
-            }
-            if (minIndex != i) {
-                arr[minIndex] ^= arr[i];
-                arr[i] ^= arr[minIndex];
-                arr[minIndex] ^= arr[i];
-            }
-        }
-    }
 }

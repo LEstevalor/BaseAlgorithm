@@ -6,7 +6,9 @@ public class Merget {
     public static void main(String[] args) {
         int[] arr = {8, 4, 5, 7, 1, 3, 6, 2};
         int[] temp = new int[arr.length];   //归并排序需一个额外空间(空间换时间)
-        mergetSort(arr, 0, arr.length - 1, temp);
+//        mergetSort(arr, 0, arr.length - 1, temp);
+        merge(arr, 0, arr.length - 1, temp);
+
 
         System.out.println(Arrays.toString(arr));
         System.out.println(Arrays.toString(temp));
@@ -34,16 +36,24 @@ public class Merget {
         while (left + t <= right) arr[left + t] = temp[t++];
     }
 
-    public static void megadw(int[] arr, int left, int mid, int right, int[] temp) {
-        int i = left;
-        int j = mid + 1;
-        int t = 0;
-        while (i <= mid && j <= right) {
-            temp[t++] = (arr[i] < arr[j]) ? arr[i++] : arr[j++];
+    public static void merge(int[] arr, int left, int right, int[] temp) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            merge(arr, left, mid, temp);
+            merge(arr, mid + 1, right, temp);
+
+            // 归并
+            int i = left;
+            int j = mid + 1;
+            int t = 0;
+            while (i <= mid && j <= right) {
+                temp[t++] = (arr[i] < arr[j]) ? arr[i++] : arr[j++];
+            }
+            while (i <= mid) temp[t++] = arr[i++];
+            while (j <= right) temp[t++] = arr[j++];
+            t = 0;
+            // 根据传入范围赋值回arr
+            while (left + t <= right) arr[left + t] = temp[t++];
         }
-        while (i <= mid) temp[t++] = arr[i++];
-        while (j <= right) temp[t++] = arr[j++];
-        t = 0;
-        while (left + t <= right) arr[left + t] = temp[t++];
     }
 }

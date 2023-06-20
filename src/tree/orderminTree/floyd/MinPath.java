@@ -2,13 +2,13 @@ package tree.orderminTree.floyd;
 
 public class MinPath {
     public static void main(String[] args) {
-        char[] data = {'a','b','c','d','e','f','g'};
-        int m = Integer.MAX_VALUE/2;
-        int[][] near = new int[][] {
-                {0,5,7,m,m,m,2},{5,0,m,9,m,m,3},
-                {m,m,0,m,8,m,m},{m,9,m,0,m,4,m},
-                {m,m,8,m,0,5,4},{m,m,m,4,5,0,6},
-                {2,3,m,m,4,6,0}
+        char[] data = {'a', 'b', 'c', 'd', 'e', 'f', 'g'};
+        int m = Integer.MAX_VALUE / 2;
+        int[][] near = new int[][]{
+                {0, 5, 7, m, m, m, 2}, {5, 0, m, 9, m, m, 3},
+                {m, m, 0, m, 8, m, m}, {m, 9, m, 0, m, 4, m},
+                {m, m, 8, m, 0, 5, 4}, {m, m, m, 4, 5, 0, 6},
+                {2, 3, m, m, 4, 6, 0}
         };
 
         GraphP graphP = new GraphP(data, near);
@@ -21,6 +21,7 @@ public class MinPath {
         }
     }
 }
+
 /*
 邻接矩阵
 A B C D E F G
@@ -45,9 +46,11 @@ class FloydDemo {
         }
     }
 }
+
 class GraphP {
     char[] data;   //节点数据
     int[][] near;  //路径矩阵
+
     public GraphP(char[] data, int[][] near) {
         this.data = data;
         this.near = near;

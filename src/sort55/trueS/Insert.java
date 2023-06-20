@@ -18,7 +18,21 @@ public class Insert {
             arr[insertIndex] = insertVal;
         }
     }
-    
+
+    public static void eInsert(int[] arr) {
+        int val = 0;
+        int k = 0;
+        for (int i = 1; i < arr.length; i++) {
+            val = arr[i];
+            k = i;
+            while (k > 0 && val < arr[k-1]) {
+                arr[k] = arr[k-1];
+                k--;
+            }
+            arr[k] = val;
+        }
+    }
+
     public static void baba(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             int insertVal = arr[i];

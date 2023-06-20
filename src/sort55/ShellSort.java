@@ -13,6 +13,7 @@ public class ShellSort {
     public static void shellSort(int[] arr) {
         for (int gap = arr.length / 2; gap > 0; gap /= 2) {
             for (int i = gap; i < arr.length; i++) {
+                // 这里面就是一个按间隔的插入排序
                 int j = i;
                 int temp = arr[i];
                 while (j - gap >= 0 && temp < arr[j - gap]) {
