@@ -15,7 +15,7 @@ public class packet01 {
      * @param w 物体重量
      * @param v 物体体积
      * @return 容量capacity下背包装入物品最优解
-     */git
+     */
     public static int dp(int capacity, int[] w, int[] v) {
         // 物品数
         int n = w.length;
