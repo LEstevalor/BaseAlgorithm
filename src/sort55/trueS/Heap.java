@@ -36,4 +36,18 @@ public class Heap {
         }
         arr[i] = temp;
     }
+
+
+    public void heap(int[] arr) {
+        int t = 0;
+        for (int i = arr.length / 2 - 1; i >= 0; i++) {
+            ad(arr, i, arr.length);
+        }
+    }
+    public void ad(int[] arr, int i, int len) {
+        int t = arr[i];
+        for (int k = 2 * i + 1; k < len; k = 2 * k + 1) {
+
+        }
+    }
 }

@@ -13,13 +13,25 @@ public class InsertSort {
         for (int i = 1; i < arr.length; i++) {
             int insertVal = arr[i];
             int insertIndex = i;   //待插入数据位置的前一个位置
-            while (insertIndex >= 1 && insertVal < arr[insertIndex - 1]) {
+            while (insertIndex >= 1 && insertVal < arr[insertIndex - 1]) {  // 其实这里是确保insertIndex - 1 >= 0
                 arr[insertIndex] = arr[insertIndex - 1];
                 insertIndex--;
             }
             arr[insertIndex] = insertVal;
         }
     }
+
+//    public void insertSor1t(int[] arr) {
+//        for (int i = 1; i < arr.length; i++) {
+//            int insertIndex = i;
+//            int insertVal = arr[i];
+//            while (insertIndex > 0 && arr[insertIndex - 1] > insertVal) {
+//                arr[insertIndex] = arr[insertIndex - 1];
+//                insertIndex--;
+//            }
+//            arr[insertIndex] = insertVal;
+//        }
+//    }
 
     //self
     public static void insertSort0(int[] arr) {

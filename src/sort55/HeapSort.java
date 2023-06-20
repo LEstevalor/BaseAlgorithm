@@ -47,7 +47,7 @@ public class HeapSort {
     /**
      * 将一个数组（完全二叉树），调整成一个大顶堆
      * 功能：将以i为非叶子节点的树调整成大顶堆
-     * 例：{4,6,8,5,9} i=1 -> adjustHeap -> {4,9,8,5,6} （下一步就得传i=0）
+     * 例：{4,6,8,5,9} i=1 -> adjustHeap -> {4,9,8,5,6} （下一步就得传i=0）   0索引位是根节点的位置
      * @param arr 待调整的数组
      * @param i 非叶子节点在数组中的索引（从这个i，说明是局部的）
      * @param len 对多少个元素调整（排序完的就不纳入比较范围）
@@ -73,4 +73,43 @@ public class HeapSort {
         // 当for结束后，以i为父节点的树最大值已放局部最顶端
         arr[i] = temp;  // 赋值回去
     }
+
+
+
+    public void heapSort_(int[] arr) {
+        // 从第一个非叶子节点遍历每个非叶子节点
+        for (int i = arr.length / 2 - 1; i >= 0; i--) {
+            becomeHeap(arr, i, arr.length);
+        }
+
+        // 叶子最边缘与根节点值交换，此时的堆层都是有序的，所有只需对根节点做成顶堆操作
+        for (int i = arr.length - 1; i > 0; i--) {
+            int temp = arr[i];
+            arr[i] = arr[0];
+            arr[0] = temp;
+            becomeHeap(arr, 0, i);
+        }
+    }
+
+    /**
+     * @param arr 待调整的数组
+     * @param i 非叶子节点在数组中的索引（从这个i，说明是局部的）
+     * @param len 截止元素长度
+     */
+    private void becomeHeap(int[] arr, int i, int len) {
+        int val = arr[i];  // 记录
+        for (int k = 2 * i + 1; k < len; k = 2 * k + 1) {
+            if (k + 1 < len && arr[k] < arr[k + 1]) {
+                k++;  // 右子大则当前转换为右子
+            }
+            if (arr[k] > val) {
+                arr[i] = arr[k];  // 上移
+                i = k;            // i此时记录的是下移状态
+            } else {
+                break;
+            }
+        }
+        arr[i] = val;
+    }
+
 }

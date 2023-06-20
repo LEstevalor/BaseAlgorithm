@@ -20,10 +20,10 @@ public class Quick {
             arr[r] ^= arr[l];          //卡住的数就做交换，直到终止条件
             arr[l] ^= arr[r];
             arr[r] ^= arr[l];
-            if (arr[l] == pivot) l++;   //数组元素可重复才用加这两行
-            if (arr[r] == pivot) r--;   //不加可能会一直卡在r或l的某一步，一直跟一个数在做交换
+            while (arr[l] == pivot) l++;   //数组元素可重复才用加这两行
+            while (arr[r] == pivot) r--;   //不加可能会一直卡在r或l的某一步，一直跟一个数在做交换
         }
-        if (l == r) {   //到这里说明当前元素是中立的
+        if (l == r) {   //到这里说明当前元素是中立的，且无重元
             l++;
             r--;
         }
